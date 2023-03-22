@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.machineTest.category_product.entity.Product;
 import com.machineTest.category_product.service.ProductService;
 
+@RequestMapping("/api")
 @RestController
 public class ProductController {
-	 @Autowired
+	@Autowired
 	private ProductService proSer;
 	
 	@GetMapping("/products")
@@ -25,23 +27,23 @@ public class ProductController {
 		return this.proSer.getAllProduct(page,pageSize);
 	}
 	
-	@GetMapping("/product/{productId}")
+	@GetMapping("/products/{productId}")
 	public Product getProduct(@PathVariable int productId) {
 		return this.proSer.getProduct(productId);
 	}
 	
-	@DeleteMapping ("/product/{productId}")
+	@DeleteMapping ("/products/{productId}")
 	public void deleteProduct(@PathVariable int productId) {
 		
 		this.proSer.deleteProduct(productId);
 	}
-	@PostMapping("/product")
+	@PostMapping("/products")
 	public Product addProduct(@RequestBody Product Product) {
 		
 		return this.proSer.addProduct(Product);
 	}
 	
-	@PutMapping("/product")
+	@PutMapping("/products/{productId}")
 	public Product updateProduct(@RequestBody Product Product) {
 		
 		return this.proSer.addProduct(Product);

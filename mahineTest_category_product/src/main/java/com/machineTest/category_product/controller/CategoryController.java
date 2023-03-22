@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import com.machineTest.category_product.entity.Category;
 import com.machineTest.category_product.service.CategoryService;
 
 @RestController
+@RequestMapping("/api")
 public class CategoryController {
 	 @Autowired
 	private CategoryService catSer;
@@ -26,24 +28,24 @@ public class CategoryController {
 		return this.catSer.getAllCategory(page,pageSize);
 	}
 	
-	@GetMapping("/category/{CataegoryId}")
-	public Category getCategory(@PathVariable int CataegoryId)
+	@GetMapping("/categories/{CategoryId}")
+	public Category getCategory(@PathVariable int CategoryId)
 	{
-		return this.catSer.getCategory(CataegoryId);
+		return this.catSer.getCategory(CategoryId);
 	}
 	
-	@PostMapping("/category")
+	@PostMapping("/categories")
 	public Category addCategory(@RequestBody Category category) {
 		
 		return this.catSer.addCategory(category);
 	}
 	
-	@DeleteMapping ("/category/{CataegoryId}")
-	public void deleteCategory(@PathVariable int CataegoryId) {
-		this.catSer.deleteCategory(CataegoryId);
+	@DeleteMapping ("/categories/{CategoryId}")
+	public void deleteCategory(@PathVariable int CategoryId) {
+		this.catSer.deleteCategory(CategoryId);
 	}
 	
-	@PutMapping("/category")
+	@PutMapping("/categories/{CategoryId}")
 	public Category updateCategory(@RequestBody Category category) {
 		
 		return this.catSer.addCategory(category);
